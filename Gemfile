@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'brcobranca', git: 'https://github.com/kivanio/brcobranca.git'
+gem 'brcobranca', git: 'https://github.com/dev-inover/brcobranca.git'
 gem 'grape'
 gem 'puma'
 gem 'base64'

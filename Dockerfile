@@ -1,5 +1,5 @@
 FROM alpine:3.20.0
-MAINTAINER "raphael.valyi@akretion.com"
+MAINTAINER "charles@inover.com"
 
 WORKDIR /usr/src/app
 COPY . .

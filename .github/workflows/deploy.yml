@@ -1,0 +1,48 @@
+name: Build and Deploy
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy-on-merged:
+    environment: Production
+    runs-on: ubuntu-latest
+    #if: github.event.pull_request.merged == true
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build Docker image
+        run: |
+          docker build ./ -t boleto_api:${{ github.sha }} ${{ steps.logsbuildargs.outputs.args }} 
+          docker save boleto-api:${{ github.sha }} > boleto-api.tar
+
+        # Deploy to Remote Server
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          known_hosts: unnecessary
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Copy Docker image to Server
+        run: scp boleto-api.tar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}
+
+      #- name: Load Docker image and start container on Server
+      #  run: |
+      #    ssh -o StrictHostKeyChecking=no -l ${{ secrets.SERVER_USER }} ${{ secrets.SERVER_HOST }} <<- EOF
+      #       sudo docker load < boleto-api.tar
+      #       sudo docker stop boleto-api || true
+      #       sudo docker rm boleto-api || true
+      #       sudo docker run -d --name boleto-api boleto-api:${{ github.sha }}
+      #     EOF

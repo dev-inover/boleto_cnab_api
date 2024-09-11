@@ -23,7 +23,7 @@ module BoletoApi
   end
 
   class Server < Grape::API
-    version 'v1', using: :header, vendor: 'Akretion'
+    version 'v1', using: :header, vendor: 'dev-inover'
     format :json
     prefix :api
 
