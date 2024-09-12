@@ -22,8 +22,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build ./ -t boleto_api:${{ github.sha }} ${{ steps.logsbuildargs.outputs.args }} 
-          docker save boleto-api:${{ github.sha }} > boleto-api.tar
+          docker build ./ -t boleto_api:${{ github.sha }}
+          docker save boleto_api:${{ github.sha }} > boleto-api.tar
 
         # Deploy to Remote Server
       - name: Install SSH Key
