@@ -38,11 +38,11 @@ jobs:
       - name: Copy Docker image to Server
         run: scp boleto-api.tar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}
 
-      #- name: Load Docker image and start container on Server
-      #  run: |
-      #    ssh -o StrictHostKeyChecking=no -l ${{ secrets.SERVER_USER }} ${{ secrets.SERVER_HOST }} <<- EOF
-      #       sudo docker load < boleto-api.tar
-      #       sudo docker stop boleto-api || true
-      #       sudo docker rm boleto-api || true
-      #       sudo docker run -d --name boleto-api boleto-api:${{ github.sha }}
-      #     EOF
+      - name: Load Docker image and start container on Server
+        run: |
+          ssh -o StrictHostKeyChecking=no -l ${{ secrets.SERVER_USER }} ${{ secrets.SERVER_HOST }} <<- EOF
+             sudo docker load < boleto-api.tar
+             sudo docker stop boleto-api || true
+             sudo docker rm boleto-api || true
+             sudo docker run -d --name boleto-api boleto-api:${{ github.sha }}
+           EOF
