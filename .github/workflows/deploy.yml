@@ -40,11 +40,11 @@ jobs:
 
       - name: Load Docker image and start container on Server
         run: |
-          ssh -o StrictHostKeyChecking=no -l ${{ secrets.SERVER_USER }} ${{ secrets.SERVER_HOST }} <<- EOF
-             sudo docker load < boleto-api.tar
-             sudo docker stop boleto-api || true
-             sudo docker rm boleto-api || true
-             sudo docker run -d --name boleto-api -p 9292:9292 boleto_api:${{ github.sha }}
-             sudo docker logs boleto-api
-             sudo docker ps -a
-           EOF
+          ssh -o StrictHostKeyChecking=no -l ${{ secrets.SERVER_USER }} ${{ secrets.SERVER_HOST }} << EOF
+            sudo docker load < boleto-api.tar
+            sudo docker stop boleto-api || true
+            sudo docker rm boleto-api || true
+            sudo docker run -d --name boleto-api -p 9292:9292 boleto_api:${{ github.sha }}
+            sudo docker logs boleto-api
+            sudo docker ps -a
+          EOF
