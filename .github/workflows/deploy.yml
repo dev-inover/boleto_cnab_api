@@ -44,5 +44,7 @@ jobs:
              sudo docker load < boleto-api.tar
              sudo docker stop boleto-api || true
              sudo docker rm boleto-api || true
-             sudo docker run -d --name boleto-api boleto_api:${{ github.sha }}
+             sudo docker run -d --name boleto-api -p 9292:9292 boleto_api:${{ github.sha }}
+             sudo docker logs boleto-api
+             sudo docker ps -a
            EOF
