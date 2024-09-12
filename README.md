@@ -10,6 +10,23 @@ Mais especificamente, a [Akretion](http://www.akretion.com) que é a empresa que
 
 Imprime *Boletos*, gera arquivos de *Remessa* e lê os arquivos de *Retorno* nos formatos CNAB 240, CNAB 400 para os 16 principais bancos do Brasil (Banco do Brasil, Banco do Nordeste, Banestes, Santander, Banrisul, Banco de Brasília, Caixa, Bradesco, Itaú, HSBC, Sicredi, Sicoob, AILOS, Unicred, CREDISIS e Citibank). Mas o grande barato desse projeto é que fazemos isso com menos de 200 linhas de código! Já comparou quantas linhas de de código você tem que manter sozinho ou quase se for re-fazer na linguagem que você quer tudo que o BRCobranca já faz? Seriam dezenas de milhares de linhas e você nunca teria uma qualidade tão boa...
 
+
+
+# Desenvolvimento local
+```bash
+        curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+
+	sudo apt-get update
+	sudo apt-get install -y build-essential libssl-dev zlib1g-dev libreadline-dev libyaml-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev
+
+	rbenv install 3.2.0
+	rbenv global 3.2.0
+	gem install bundler
+        #Acessar diretório
+	bundle install
+	bundle exec puma
+```
+
 # API
 
 ```ruby
