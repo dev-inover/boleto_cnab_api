@@ -18,6 +18,8 @@ Imprime *Boletos*, gera arquivos de *Remessa* e lê os arquivos de *Retorno* nos
 
 	sudo apt-get update
 	sudo apt-get install -y build-essential libssl-dev zlib1g-dev libreadline-dev libyaml-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev
+mkdir -p "$(rbenv root)"/plugins
+git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 
 	rbenv install 3.2.0
 	rbenv global 3.2.0
