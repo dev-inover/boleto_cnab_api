@@ -10,6 +10,11 @@ Mais especificamente, a [Akretion](http://www.akretion.com) que é a empresa que
 
 Imprime *Boletos*, gera arquivos de *Remessa* e lê os arquivos de *Retorno* nos formatos CNAB 240, CNAB 400 para os 16 principais bancos do Brasil (Banco do Brasil, Banco do Nordeste, Banestes, Santander, Banrisul, Banco de Brasília, Caixa, Bradesco, Itaú, HSBC, Sicredi, Sicoob, AILOS, Unicred, CREDISIS e Citibank). Mas o grande barato desse projeto é que fazemos isso com menos de 200 linhas de código! Já comparou quantas linhas de de código você tem que manter sozinho ou quase se for re-fazer na linguagem que você quer tudo que o BRCobranca já faz? Seriam dezenas de milhares de linhas e você nunca teria uma qualidade tão boa...
 
+# Docker
+```bash
+docker build . -f Dockerfile -t boleto_api
+docker container run boleto_api
+```
 
 
 # Desenvolvimento local
